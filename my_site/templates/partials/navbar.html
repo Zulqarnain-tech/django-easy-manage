@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+        {% if user.is_authenticated %}
+        <a class="navbar-brand" href="{% url 'dashboard' %}">
+            Dashboard
+        </a>
+        {% else %}
+        <a class="navbar-brand" href="{% url 'login' %}">
+            Home
+        </a>
+        {% endif %}
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarNav" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}"> <i class="fas fa-user-times"></i> Logout</a>
+                </li>
+                {% else %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Home</a>
+                </li>          
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

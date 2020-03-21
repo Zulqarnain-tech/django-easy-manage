@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- .col-md-6 -->
+                <div class="col-lg-6">
+                    <!-- /.card -->
+                    <!-- Horizontal Form -->
+                    
+                      <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header bg-info text-white text-center">
+                                <h4>Pending Projects</h4>
+                            </div>
+                        <div class="card-body text-center">
+                            <h1>{{project_count}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header bg-info text-white text-center">
+                                <h4>Pending Tasks</h4>
+                            </div>
+                            <div class="card-body text-center">
+                                <h1>{{task_count}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                      </div>
+                        
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-md-6 -->
+
+                <!-- .col-md-6 -->
+                <div class="col-lg-6">
+
+                    <div class="card">
+                        <h5 class="card-title text-center p-2 text-bold">Task List</h5>
+                        <table id="forTask" class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Task ID</th>
+                                    <th scope="col">Task Name</th>
+                                    <th scope="col">Assigned To</th>
+                                    <th scope="col">Detail</th>
+                                    <th scope="col">Edit</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+                            {% if task_list %}
+                            <tbody>
+                                {% for task in task_list %}
+                                <tr>
+                                    <td>{{task.id}}</td>
+                                    <td>{{task.task_name}}</td>
+                                    <td>{{task.assigned_to}}</td>
+                                    <td><a href="{% url 'detail_task' project_id=task.project.pk task_id=task.pk %}"><i
+                                                class="fas fa-detail"></i></a>
+                                    </td>
+                                    <td><a href="{% url 'update_task' task_id=task.pk %}"><i
+                                                class="fas fa-edit"></i></a></td>
+                                    <td><a href="{% url 'delete_task' task_id=task.pk %}"><i
+                                                class="far fa-trash-alt"></i></a>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            {% endif %}
+                        </table>
+                    </div>
+                </div>
+                <!-- /.col-md-6 -->
+            </div>
+            <div class="row">
+                <!-- .col-md-6 -->
+                <div class="col-lg-6">
+                    <!-- /.card -->
+                    <!-- Horizontal Form -->
+                    <div class="card card-info">
+                        <div class="card-header bg-info text-white">
+                            <h3 class="card-title text-center">Add Project</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form class="form-horizontal" method="post">
+                            <div class="card-body">
+                             {% for error in form.non_field_error %}
+                             <p>{{error | escape}}</p>
+                             {% endfor %}
+                                {{form}}
+                                {% csrf_token %}
+
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer text-center">
+                                {% if project_object %}
+                                <button type="submit" class="btn btn-info">Update Project</button>
+                                <a href="{% url 'dashboard' %}" class="btn btn-warning text-white">Cancel</a>
+                                {% else %}
+                                <button type="submit" class="btn btn-info">Add Project</button>
+                                {% endif %}
+
+                            </div>
+                            <!-- /.card-footer -->
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-md-6 -->
+
+                <!-- .col-md-6 -->
+                <div class="col-lg-6">
+                    <div class="card">
+                        <h5 class="card-title text-center p-2 text-bold">Project List</h5>
+                        <table id="forProject" class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Project ID</th>
+                                    <th scope="col">Project Name</th>
+                                    <th scope="col">Manager</th>
+                                    <th scope="col">Detail</th>
+                                    <th scope="col">Edit</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+                            {% if project_list %}
+                            <tbody>
+                                {% for project in project_list %}
+                                <tr>
+                                    <td>{{project.id}}</td>
+                                    <td>{{project.project_name}}</td>
+                                    <td>{{project.manager_name}}</td>
+                                    <td><a href="{% url 'detail_project' project_id=project.pk %}"><i
+                                                class="fas fa-detail"></i></a>
+                                    </td>
+                                    <td><a href="{% url 'update_project' project_id=project.pk %}"><i
+                                                class="fas fa-edit"></i></a></td>
+                                    <td><a href="{% url 'delete_project' project_id=project.pk %}"><i
+                                                class="far fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                            {% endif %}
+                        </table>
+                    </div>
+                    
+
+                </div>
+                <!-- /.col-md-6 -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<script>
+    var form_fields = document.getElementsByTagName('input')
+    for (var field in form_fields) {
+        form_fields[field].className += 'form-control'
+    }
+    var form_field_error = document.getElementsByClassName("errorlist nonfield");
+ 
+      for (var field in form_field_error) {
+            form_field_error[field].className += 'alert alert-warning'
+        }
+</script>
+{% endblock %}

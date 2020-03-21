@@ -1,0 +1,92 @@
+            int [][]jagged=new int[5][];
+            jagged[0] = new int[6];
+            jagged[1] = new int[4];
+            for (int i = 2; i < 5;i++ )
+            {
+                jagged[i] = new int[3];
+            }
+            Console.WriteLine("Length of column of Array: (GetLength)");
+                for (int i = 0; i < 5; i++)
+                {
+                    Console.WriteLine("Index "+(i+1)+" : "+jagged[i].GetLength(0)+" Column Length");
+                }
+            Console.WriteLine("Total Length of Array: (Length) "+ jagged.Length);
+            Console.WriteLine("Rank of Array: (Rank) " + jagged.Rank);
+
+            for(int i=0;i<jagged.Length;i++)
+            {
+                for(int j=0;j<jagged[i].GetLength(0);j++)
+                {
+                    jagged[i][j]=Convert.ToInt32(Console.ReadLine());
+                }
+            }
+            int sum = 0;
+            for (int i = 0; i < jagged.Length; i++)
+            {
+                for (int j = 0; j < jagged[i].GetLength(0); j++)
+                {
+                    sum += jagged[i][j];
+                }
+            }
+
+            Console.WriteLine("Total sum of The Array is: " + sum);
+            string s = "Heello";
+            string d = s.Replace("e","a");
+            Console.WriteLine("Index = {0}", s);
+            Console.WriteLine("Index = {0}", d);
+            
+            Console.WriteLine("Sun = {0}",(int)A.world);
+            Console.ReadKey();
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+int[][][] jagged = new int[3][][];
+            jagged[0] = new int[3][];
+            jagged[1] = new int[2][];
+            jagged[2] = new int[1][];
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine(jagged[i].GetLength(0));
+                Console.ReadKey();
+                for (int j = 0; j < jagged[i].GetLength(0); j++)
+                {
+                    jagged[i][j] = new int[3];
+                }
+            }
+            Console.WriteLine("Length of column of Array: (GetLength)");
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Index " + (i + 1) + " : " + jagged[i].GetLength(0) + " Column Length");
+            }
+            Console.WriteLine("Total Length of Array: (Length) " + jagged.Length);
+            Console.WriteLine("Rank of Array: (Rank) " + jagged.Rank);
+
+            for (int i = 0; i < jagged.Length; i++)
+            {
+                for (int j = 0; j < jagged[i].GetLength(0); j++)
+                {
+                    for (int k = 0; k < jagged[i][j].GetLength(0);k++)
+                    {
+                        jagged[i][j][k] = Convert.ToInt32(Console.ReadLine());
+                    }
+                }
+            }
+            int sum = 0;
+            for (int i = 0; i < jagged.Length; i++)
+            {
+                for (int j = 0; j < jagged[i].GetLength(0); j++)
+                {
+                    for (int k = 0; k < jagged[i][j].GetLength(0);k++ )
+                        sum += jagged[i][j][k];
+                }
+            }
+
+            Console.WriteLine("Total sum of The Array is: " + sum);
+            string s = "Heello";
+            string d = s.Replace("e", "a");
+            Console.WriteLine("Index = {0}", s);
+            Console.WriteLine("Index = {0}", d);
+
+            Console.WriteLine("Sun = {0}", (int)A.world);
+            Console.ReadKey();
+            

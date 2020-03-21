@@ -1,0 +1,85 @@
+
+
+{% extends 'base.html' %}
+{% block content %}
+<div class="content-wrapper">
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- .col-md-6 -->
+                <div class="col-md-6">
+                    <ul class="list-group">
+                        <div class="text-center text-white bg-warning">
+                            <h3>Project Details</h3>
+                        </div>
+                        <li class="list-group-item justify-content-between">
+                            Project ID
+                            <span class="badge badge-default badge-pill">{{project_object.id}}</span>
+                        </li>
+                        <li class="list-group-item justify-content-between">
+                            Project Name
+                            <span class="badge badge-default badge-pill">{{project_object.project_name}}</span>
+                        </li>
+                        <li class="list-group-item justify-content-between">
+                            Project Manager
+                            <span class="badge badge-default badge-pill">{{project_object.manager_name}}</span>
+                        </li>
+                        <div class="text-center bg-white p-5">
+
+                            <a href="{% url 'add_task' project_id=project_object.id %}"
+                                class="btn btn-danger text-white">Add Task</a>
+                          
+                            <a href="{% url 'dashboard' %}" class="btn btn-warning text-white">back to Main</a>
+                        </div>
+                    </ul>
+                </div>
+                <!-- /.col-md-6 -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <h5 class="card-title text-center p-2 text-bold">Task List</h5>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Task ID</th>
+                                    <th scope="col">Task Name</th>
+                                    <th scope="col">Assigned To</th>
+                                    <th scope="col">Detail</th>
+                                    <th scope="col">Edit</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+                            {% if task_list %}
+                            <tbody>
+                                {% for task in task_list %}
+                                <tr>
+                                    <td>{{task.id}}</td>
+                                    <td>{{task.task_name}}</td>
+                                    <td>{{task.assigned_to}}</td>
+                                    <td><a href="{% url 'detail_task' project_id=task.project.pk task_id=task.pk %}"><i class="fas fa-detail"></i></a>
+                                    </td>
+                                    <td><a href="{% url 'update_task' task_id=task.pk %}"><i class="fas fa-edit"></i></a></td>
+                                    <td><a href="{% url 'delete_task' task_id=task.pk %}"><i class="far fa-trash-alt"></i></a>
+                                    </td>
+                    
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            {% endif %}
+                        </table>
+                    </div>
+                </div>
+                <!-- .col-md-6 -->
+
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+{% endblock %}
+
+
+
+    

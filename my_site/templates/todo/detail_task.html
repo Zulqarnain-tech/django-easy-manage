@@ -1,0 +1,58 @@
+
+
+{% extends 'base.html' %}
+{% block content %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Project Management System</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+    
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+    
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- .col-md-6 -->
+                    <div class="col">
+                        <ul class="list-group">
+                            <div class="text-center text-white bg-warning">
+                                <h3>Task Details</h3>
+                            </div>
+                            <li class="list-group-item justify-content-between">
+                                Task ID
+                                <span class="badge badge-default badge-pill">{{task_object.id}}</span>
+                            </li>
+                            <li class="list-group-item justify-content-between">
+                                Task Name
+                                <span class="badge badge-default badge-pill">{{task_object.task_name}}</span>
+                            </li>
+                            <li class="list-group-item justify-content-between">
+                                Assigned To
+                                <span class="badge badge-default badge-pill">{{task_object.assigned_to}}</span>
+                            </li>
+                            <div class="text-center bg-white p-5">
+                                <a href="{% url 'dashboard' %}" class="btn btn-warning text-white">back to Main</a>
+                            </div>
+                        </ul>
+                    </div>
+                    <!-- /.col-md-6 -->
+    
+                    <!-- .col-md-6 -->
+    
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+{% endblock %}
